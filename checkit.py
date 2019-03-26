@@ -18,8 +18,8 @@ if sys.argv[2:]:
     port = int(sys.argv[1])
     key = str(sys.argv[2])
 else:
-    print "syntax: 'checkit <port> <key>' with port number for server and arbitrary key value"
-    sys.exit(1)
+    port=int(os.getenv('CHECKIT_PORT', 8080))
+    key=os.getenv('CHECKIT_KEY',"n/a")
 
 server_address = ('0.0.0.0', port)
 hostname=socket.gethostname()
