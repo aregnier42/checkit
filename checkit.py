@@ -10,7 +10,8 @@ class MyRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.end_headers()
-        response=b'['+datetime.datetime.now().strftime("%Y%m%d-%H%M%S.%f")+']'+b' key='+key+b' host='+hostname+b' - Hello '+str(self.client_address[0])+' \n'     
+        client=str(self.headers.get("X-Forwarded-For","n/a"))+" - " +str(self.client_address[0])
+        response=b'['+datetime.datetime.now().strftime("%Y%m%d-%H%M%S.%f")+’]’+b' key='+key+b' host='+hostname+b' - Hello '+client+' \n'
         self.wfile.write(response)
         print("==> "+response)
 
