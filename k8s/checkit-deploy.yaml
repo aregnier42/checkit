@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkit
+  labels:
+    name: checkit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: checkit
+  template:
+    metadata:
+      labels:
+        app: checkit
+    spec:
+      containers:
+      - name: checkit
+        image: gcr.io/XXXXX_PROJ_XXXXX/checkit:1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: CHECKIT_PORT
+          value: "8080"
+        - name: CHECKIT_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: checkit-config
+              key: checkit.key
