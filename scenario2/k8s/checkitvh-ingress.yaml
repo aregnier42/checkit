@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: checkitvh
+spec:
+  rules:
+  - host: checkitvh1.mykubetest.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: checkit
+            port:
+              number: 80
+  - host: checkitvh2.mykubetest.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: checkit2
+            port:
+              number: 80
+

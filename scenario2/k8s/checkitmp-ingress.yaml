@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: checkitmp
+spec:
+  rules:
+  - host: checkitmp.mykubetest.com
+    http:
+      paths:
+      - path: /version1
+        pathType: Prefix
+        backend:
+          service:
+            name: checkit
+            port:
+              number: 80
+      - path: /version2
+        pathType: Prefix
+        backend:
+          service:
+            name: checkit2
+            port:
+              number: 80
