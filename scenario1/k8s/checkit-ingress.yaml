@@ -4,7 +4,7 @@ metadata:
   name: checkit
 spec:
   rules:
-  - host: checkit.mykubetest.com
+  - host: checkit.kubetest.com
     http:
       paths:
       - path: /
