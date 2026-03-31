@@ -4,7 +4,7 @@ import os
 import socket
 import datetime
 
-# simple web app to illustrate kubernetes concepts
+# simple web app returning a string with details about the request
 class MyRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -35,6 +35,6 @@ if os.path.isfile('/config/checkit/checkit.conf'):
     finally:
         fp.close()
 
-print ("starting with..."+str(server_address)+" key="+key+" sec="+secret[:2]+"... on "+hostname)
+print ("starting with... "+str(server_address)+" key="+key+" sec="+secret[:2]+"... on "+hostname)
 httpd = http.server.HTTPServer(server_address, MyRequestHandler)
 httpd.serve_forever()
